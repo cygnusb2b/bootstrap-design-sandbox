@@ -28,6 +28,9 @@ module.exports = function() {
     },
     devServer: {
       historyApiFallback: true,
+      proxy: {
+        '/file': 'http://server:8199',
+      },
     },
     plugins: [
       new HtmlWebpackPlugin({

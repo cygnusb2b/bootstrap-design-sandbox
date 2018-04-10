@@ -1,17 +1,27 @@
 version: '3'
 services:
+  server:
+    tty: true
+    image: node:8
+    environment:
+      PORT: 8199
+    working_dir: /app
+    volumes:
+      - .:/app:ro
+      - node_modules:/app/node_modules
+    entrypoint: "node src/server.js"
   app:
+    depends_on:
+      - server
     tty: true
     image: node:8
     working_dir: /app
     ports:
       - "${SANDBOX_PORT-5623}:${SANDBOX_PORT-5623}"
-    environment:
-        PORT: ${SANDBOX_PORT-5623}
     volumes:
       - .:/app:cached
       - node_modules:/app/node_modules
     restart: on-failure
-    entrypoint: "/app/start.sh"
+    entrypoint: "./node_modules/.bin/webpack-dev-server --mode=development --env.dev --inline --host=0.0.0.0 --port=${SANDBOX_PORT-5623}"
 volumes:
   node_modules: {}
