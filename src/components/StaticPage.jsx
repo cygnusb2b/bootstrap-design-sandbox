@@ -27,8 +27,9 @@ class StaticPage extends Component {
    *
    */
   getEndpoint() {
-    const { pathname } = this.props.location;
-    return `/file${pathname}.html`;
+    console.info(this.props);
+    const { filename } = this.props.match.params;
+    return `/file/${filename}.html`;
   }
 
   /**
@@ -52,8 +53,10 @@ class StaticPage extends Component {
 }
 
 StaticPage.propTypes = {
-  location: PropTypes.shape({
-    pathname: PropTypes.string.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      filename: PropTypes.string.isRequired,
+    }),
   }).isRequired,
 };
 
