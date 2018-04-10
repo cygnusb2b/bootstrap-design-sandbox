@@ -35,6 +35,8 @@ module.exports = function() {
       contentBase: resolve(publicDir, 'html'),
       watchContentBase: true,
     },
+    node: {
+      url: true,
     },
     module: {
       rules: [
