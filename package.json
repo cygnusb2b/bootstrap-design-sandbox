@@ -1,0 +1,10 @@
+{
+  "name": "bootstrap-design-sandbox",
+  "version": "1.0.0",
+  "description": "🅱️ 🏖️ Container for designing pages with Bootstrap",
+  "main": "src/index.js",
+  "repository": "https://github.com/cygnusb2b/bootstrap-design-sandbox",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "license": "MIT",
+  "private": true
+}
