@@ -9,7 +9,7 @@
   "private": true,
   "scripts": {
     "start": "./start.sh",
-    "stop": "./start.sh",
+    "stop": "./stop.sh",
     "terminal": "docker exec -it bootstrapdesignsandbox_app_1 /bin/bash",
     "start:win": "start.bat",
     "stop:win": "stop.bat"
