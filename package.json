@@ -6,5 +6,10 @@
   "repository": "https://github.com/cygnusb2b/bootstrap-design-sandbox",
   "author": "Jacob Bare <jacob@limit0.io>",
   "license": "MIT",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14",
+    "webpack-dev-server": "^3.1.3"
+  }
 }
