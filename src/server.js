@@ -7,15 +7,15 @@ const app = express();
 
 const { PORT } = process.env
 
-app.get('/file/*', (req, res, next) => {
-  const root = resolve(__dirname, '../public/html')
+app.get('/file/:name.html', (req, res, next) => {
+  const root = resolve(__dirname, '../public/html');
+  const file = `${req.params.name}.html`;
   const options = { root, dotfiles: 'deny' };
-  const file = req.params[0];
 
   res.sendFile(file, options, (err) => {
     if (err) {
       console.error(err);
-      next(err);
+      res.status(404).send(err.message);
     } else {
       console.info('Sent file:', resolve(root, file));
     }

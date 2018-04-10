@@ -32,6 +32,9 @@ module.exports = function() {
       proxy: {
         '/file': 'http://server:8199',
       },
+      contentBase: resolve(publicDir, 'html'),
+      watchContentBase: true,
+    },
     },
     module: {
       rules: [
