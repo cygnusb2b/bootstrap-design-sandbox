@@ -46,6 +46,7 @@ class StaticPage extends Component {
     if (this.state.error) {
       return (<div className="sandbox-error">Error! {this.state.error}</div>);
     }
+    // eslint-disable-next-line react/no-danger
     return (<div className="sandbox-html-result" dangerouslySetInnerHTML={this.createMarkup()} />);
   }
 }
