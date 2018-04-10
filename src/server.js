@@ -1,15 +1,15 @@
 const path = require('path');
 const express = require('express');
 
+const { resolve } = path;
+
 const app = express();
 
 const { PORT } = process.env
 
 app.get('/file/*', (req, res, next) => {
-  const options = {
-    root: path.resolve(__dirname, 'html'),
-    dotfiles: 'deny',
-  };
+  const root = resolve(__dirname, 'html')
+  const options = { root, dotfiles: 'deny' };
   const file = req.params[0];
 
   res.sendFile(file, options, (err) => {
@@ -17,7 +17,7 @@ app.get('/file/*', (req, res, next) => {
       console.error(err);
       next(err);
     } else {
-      console.info('Sent:', file);
+      console.info('Sent file:', resolve(root, file));
     }
   });
 });
