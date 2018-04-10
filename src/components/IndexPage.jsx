@@ -31,7 +31,7 @@ class IndexPage extends Component {
           {this.state.loading ? (
             <li>Loading file list...</li>
           ) : (
-            this.state.files.map(file => (<li><Link to={file}>{file}</Link></li>))
+            this.state.files.map(file => (<li key={file}><Link to={file}>{file}</Link></li>))
           )}
         </ul>
 
