@@ -8,15 +8,11 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "prestart": "$npm_package_docker_install",
-    "start": "$npm_package_docker_up",
-    "stop": "$npm_package_docker_down",
-    "terminal": "docker exec -it bootstrapdesignsandbox_app_1 /bin/bash"
-  },
-  "docker": {
-    "install": "docker-compose run --no-deps --entrypoint yarn app",
-    "up": "docker-compose up",
-    "down": "docker-compose down"
+    "start": "./start.sh",
+    "stop": "./start.sh",
+    "terminal": "docker exec -it bootstrapdesignsandbox_app_1 /bin/bash",
+    "start:win": "start.bat",
+    "stop:win": "stop.bat"
   },
   "devDependencies": {
     "html-webpack-plugin": "^3.2.0",
