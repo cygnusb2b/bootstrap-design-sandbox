@@ -8,6 +8,6 @@ import App from './components/App';
 render(
   <BrowserRouter>
     <App />
-  </BrowserRouter>
-  , document.getElementById('sandbox'),
+  </BrowserRouter>,
+  document.getElementById('sandbox'),
 );
