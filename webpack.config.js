@@ -39,6 +39,13 @@ module.exports = function() {
           test: /\.jsx?$/,
           include: [ srcDir ],
           exclude: [ resolve(srcDir, 'server.js') ],
+          enforce: 'pre',
+          loader: 'eslint-loader',
+        },
+        {
+          test: /\.jsx?$/,
+          include: [ srcDir ],
+          exclude: [ resolve(srcDir, 'server.js') ],
           use: {
             loader: 'babel-loader',
             options: {
