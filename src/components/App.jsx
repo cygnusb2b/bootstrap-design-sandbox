@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import IndexPage from './IndexPage';
-import LoadFromServer from './LoadFromServer';
+import StaticPage from './StaticPage';
 
 const App = () => (
   <Switch>
     <Route exact path="/" component={IndexPage} />
-    <Route component={LoadFromServer} />
+    <Route component={StaticPage} />
   </Switch>
 );
 
