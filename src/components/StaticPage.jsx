@@ -27,7 +27,6 @@ class StaticPage extends Component {
    *
    */
   getEndpoint() {
-    console.info(this.props);
     const { filename } = this.props.match.params;
     return `/file/${filename}.html`;
   }
