@@ -8,7 +8,7 @@ const app = express();
 const { PORT } = process.env
 
 app.get('/file/*', (req, res, next) => {
-  const root = resolve(__dirname, 'html')
+  const root = resolve(__dirname, '../public/html')
   const options = { root, dotfiles: 'deny' };
   const file = req.params[0];
 
