@@ -23,6 +23,6 @@ services:
       - .:/app:cached
       - node_modules:/app/node_modules
     restart: on-failure
-    entrypoint: "./node_modules/.bin/webpack-dev-server --mode=development --env.dev --inline --host=0.0.0.0 --port=${SANDBOX_PORT-5623}"
+    entrypoint: "./node_modules/.bin/webpack-dev-server --mode=development --env.dev --inline --hot --host=0.0.0.0 --port=${SANDBOX_PORT-5623}"
 volumes:
   node_modules: {}
