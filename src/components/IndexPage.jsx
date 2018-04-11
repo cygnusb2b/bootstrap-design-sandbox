@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import FileListContainer from './FileListContainer';
 
 class IndexPage extends Component {
   /**
@@ -7,7 +7,7 @@ class IndexPage extends Component {
    */
   constructor() {
     super();
-    this.state = { files: [], loading: true };
+    this.state = { fileList: [], loading: true };
   }
 
   /**
@@ -16,7 +16,7 @@ class IndexPage extends Component {
   componentWillMount() {
     fetch('/file')
       .then(response => response.json())
-      .then(files => this.setState({ files }))
+      .then(fileList => this.setState({ fileList }))
       .finally(() => this.setState({ loading: false }));
   }
 
@@ -25,16 +25,12 @@ class IndexPage extends Component {
    */
   render() {
     return (
-      <div>
-        <h1>Index</h1>
-        <ul>
-          {this.state.loading ? (
-            <li>Loading file list...</li>
-          ) : (
-            this.state.files.map(file => (<li key={file}><Link to={file}>{file}</Link></li>))
-          )}
-        </ul>
-
+      <div className="container my-3">
+        <div className="row">
+          <div className="col-lg-6 col-xl-8 mx-auto">
+            <FileListContainer items={this.state.fileList} isLoading={this.state.loading} />
+          </div>
+        </div>
       </div>
     );
   }

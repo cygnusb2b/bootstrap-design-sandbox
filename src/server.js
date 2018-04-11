@@ -1,6 +1,8 @@
 const path = require('path');
 const fs = require('fs');
 const express = require('express');
+const moment = require('moment');
+const inflected = require('inflected');
 
 const { resolve, extname, basename } = path;
 
@@ -9,15 +11,37 @@ const app = express();
 const { PORT } = process.env
 const root = resolve(__dirname, '../public/html');
 
+const getFileInfo = (file) => {
+  const path = basename(file, extname(file));
+  const name = inflected.titleize(path);
+  const filepath = resolve(root, file);
+  return new Promise((resolve, reject) => {
+    fs.stat(filepath, (err, stats) => {
+      if (err) {
+        reject(err);
+      } else {
+        const mtime = stats.mtime.getTime();
+        resolve({ name, path, file, mtime });
+      }
+    });
+  });
+};
+
+const getFileList = (files) => {
+  const filtered = files.filter(file => extname(file) === '.html');
+  return Promise.all(filtered.map(file => getFileInfo(file)));
+};
+
 
 app.get('/file', (req, res, next) => {
   fs.readdir(root, (err, files) => {
     if (err) {
       next(err);
     } else {
-      const names = files.filter(file => extname(file) === '.html').map(file => basename(file, '.html'));
-      console.info('File name list:', names);
-      res.json(names);
+      getFileList(files).then((list) => {
+        console.info('File list:', list);
+        res.json(list);
+      }).catch(next);
     }
   });
 });
