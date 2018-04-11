@@ -11,3 +11,5 @@ render(
   </BrowserRouter>,
   document.getElementById('sandbox'),
 );
+// eslint-disable-next-line no-console
+console.info('Sandbox initialized!');
