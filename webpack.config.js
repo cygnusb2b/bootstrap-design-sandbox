@@ -12,7 +12,7 @@ module.exports = function() {
     entry: {
       app: [
         resolve(srcDir, 'index.js'),
-        resolve(publicDir, 'styles/app.scss'),
+        resolve(publicDir, 'app.scss'),
       ],
     },
     devtool: 'source-map',
