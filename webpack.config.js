@@ -12,9 +12,10 @@ module.exports = function() {
     entry: {
       app: [
         resolve(srcDir, 'index.js'),
+        resolve(publicDir, 'styles/app.scss'),
       ],
     },
-    devtool: 'cheap-eval-source-map',
+    devtool: 'source-map',
     resolve: {
       extensions: ['.js', '.jsx', '.json'],
       modules: [
@@ -23,7 +24,7 @@ module.exports = function() {
       ],
     },
     output: {
-      filename: '[name].[hash].min.js',
+      filename: '[name].js',
       path: buildDir,
       publicPath: '/',
     },
@@ -58,11 +59,37 @@ module.exports = function() {
             },
           },
         },
+        {
+          test: /\.(s*)css$/,
+          use: [
+            {
+              loader: 'style-loader',
+            },
+            {
+              loader: 'css-loader',
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: true,
+                plugins: function() {
+                  return [require('precss'), require('autoprefixer')];
+                },
+              },
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+              },
+            },
+          ],
+        },
       ],
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: resolve(__dirname, 'src/index.html'),
+        template: resolve(srcDir, 'index.html'),
         inject: true,
       }),
     ],
