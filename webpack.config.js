@@ -1,9 +1,11 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { getProjects } = require('./src/server/utils');
 
 const srcDir = path.resolve(__dirname, 'src');
+const assetDir = path.resolve(__dirname, 'assets');
 const projectDir = path.resolve(__dirname, 'projects');
 const buildDir = path.resolve(__dirname, 'dist');
 const nodeModules = path.resolve(__dirname, 'node_modules');
@@ -91,6 +93,9 @@ const config = {
       chunks: ['whatwg-fetch', 'core'],
       inject: true,
     }),
+    new CopyWebpackPlugin([
+      { from: assetDir, to: path.resolve(buildDir, 'assets') },
+    ]),
   ],
 };
 
