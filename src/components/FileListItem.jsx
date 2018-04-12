@@ -9,7 +9,7 @@ const FileListItem = ({
   file,
   modified,
 }) => (
-  <Link className="list-group-item list-group-item-action" to={path}>
+  <Link className="list-group-item list-group-item-action" to={`/${path}`}>
     {name} ({file})&nbsp;
     <small className="text-muted" title={moment(modified).format('MM/DD/YYYY h:mm:ss A')}>
       {moment(modified).fromNow()}

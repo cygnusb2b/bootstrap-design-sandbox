@@ -1,1 +1,1 @@
-docker-compose down
+docker-compose -p bootstrapsandbox down

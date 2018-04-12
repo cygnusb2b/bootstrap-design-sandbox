@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import url from 'url';
+import Container from '../components/Container';
+import ErrorAlert from '../components/ErrorAlert';
 
 class StaticPage extends Component {
   constructor() {
     super();
-    this.state = { html: '', loading: true, error: null };
+    this.state = { html: '', isLoading: true, error: null };
   }
 
   /**
@@ -20,7 +22,7 @@ class StaticPage extends Component {
       return response.text();
     }).then(html => this.setState({ html }))
       .catch(e => this.setState({ error: e.message }))
-      .finally(() => this.setState({ loading: false }));
+      .finally(() => this.setState({ isLoading: false }));
   }
 
   /**
@@ -28,7 +30,7 @@ class StaticPage extends Component {
    */
   getEndpoint() {
     const { filename } = this.props.match.params;
-    return `/file/${filename}.html`;
+    return `/file/${this.props.projectPath}/${filename}.html`;
   }
 
   /**
@@ -42,9 +44,13 @@ class StaticPage extends Component {
    *
    */
   render() {
-    if (this.state.loading) return (<div className="sandbox-loading">Loading...</div>);
+    if (this.state.isLoading) return (<div className="sandbox-isLoading">Loading...</div>);
     if (this.state.error) {
-      return (<div className="sandbox-error">Error! {this.state.error}</div>);
+      return (
+        <Container>
+          <ErrorAlert message={this.state.error} go={{ to: '/', label: 'the project file list' }} />
+        </Container>
+      );
     }
     // eslint-disable-next-line react/no-danger
     return (<div className="sandbox-html-result" dangerouslySetInnerHTML={this.createMarkup()} />);
@@ -52,6 +58,7 @@ class StaticPage extends Component {
 }
 
 StaticPage.propTypes = {
+  projectPath: PropTypes.string.isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       filename: PropTypes.string.isRequired,

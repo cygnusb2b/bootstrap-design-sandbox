@@ -16,7 +16,7 @@ const FileListContainer = ({ items, header, isLoading }) => (
               name={item.name}
               path={item.path}
               file={item.file}
-              modified={item.mtime}
+              modified={item.modified}
             />
           ))}
         </div>
@@ -32,7 +32,7 @@ FileListContainer.propTypes = {
     name: PropTypes.string.isRequired,
     path: PropTypes.string.isRequired,
     file: PropTypes.string.isRequired,
-    mtime: PropTypes.number.isRequired,
+    modified: PropTypes.number.isRequired,
   })),
 };
 
