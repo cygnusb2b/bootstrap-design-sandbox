@@ -22,10 +22,15 @@ const config = {
     path: buildDir,
     publicPath: '/',
   },
+  watchOptions: {
+    ignored: /node_modules/,
+  },
   devServer: {
     historyApiFallback: {
       rewrites: [],
     },
+    contentBase: [],
+    watchContentBase: true,
     proxy: {
       '/projects': 'http://server:8199',
       '/files': 'http://server:8199',
@@ -114,6 +119,7 @@ module.exports = () => new Promise((resolve, reject) => {
         inject: true,
       }));
 
+      config.devServer.contentBase.push(path.join(projectDir, project.path, 'pages'));
     });
     config.entry = entry;
     resolve(config);
