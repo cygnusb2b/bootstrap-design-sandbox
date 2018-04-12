@@ -5,7 +5,7 @@ import Container from './components/Container';
 import ErrorAlert from './components/ErrorAlert';
 import IndexPage from './pages/IndexPage';
 
-import './vendor.scss';
+import './index.scss';
 
 /* eslint-disable react/jsx-filename-extension */
 render(

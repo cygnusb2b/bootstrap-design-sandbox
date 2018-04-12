@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import FileListItem from './FileListItem';
 
 const FileListContainer = ({ items, header, isLoading }) => (
-  <div className="card">
+  <div className="card z-depth-1 border-0">
     <div className="card-header">{header}</div>
     <div className="card-body">
       {isLoading ? (
